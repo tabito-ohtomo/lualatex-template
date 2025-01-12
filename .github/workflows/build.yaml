@@ -1,0 +1,39 @@
+name: compile LaTeX and release PDF
+
+# トリガーは*.*.*のタグが付いたコミットがpushされた時
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      # TeXをcompile
+      - name: compile latex document
+        uses: ./.github/actions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # リリースを作成
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # compileしたpdfをアップロード
+      - name: Push PDF file
+        run: |
+          git config user.name GH_ACTION
+          git config user.email GH_ACTION
+          git add .
+          git commit -m "LaTeX compilation"
+          git push origin pdf

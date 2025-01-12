@@ -1,5 +1,7 @@
 ## lualatex-template
 
+cf. https://qiita.com/aaaKUKIaaa/items/e373e2e55f96d8c5c1ed
+
 ## settings
 
 
