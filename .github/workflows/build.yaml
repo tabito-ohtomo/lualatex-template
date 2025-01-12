@@ -3,8 +3,8 @@ name: compile LaTeX and release PDF
 # トリガーは*.*.*のタグが付いたコミットがpushされた時
 on:
   push:
-    tags:
-      - '*.*.*'
+    branch:
+      - 'main'
 
 jobs:
   build:
