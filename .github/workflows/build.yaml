@@ -6,6 +6,11 @@ on:
     branch:
       - 'main'
 
+permissions:
+  actions: read
+  checks: read
+  contents: write
+
 jobs:
   build:
     name: Build
