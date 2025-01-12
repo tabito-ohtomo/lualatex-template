@@ -1,4 +1,4 @@
 #!/bin/bash
 set -eux
 # build pdf
-latexmk -pdfdvi main.tex
+latexmk -lualatex main.tex
