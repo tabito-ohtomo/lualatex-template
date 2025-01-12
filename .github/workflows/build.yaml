@@ -23,6 +23,7 @@ jobs:
         run: |
           git config user.name GH_ACTION
           git config user.email GH_ACTION
-          git add .
+          cp *.pdf ./pdf
+          git add ./pdf
           git commit -m "LaTeX compilation"
-          git push origin pdf
+          git push
